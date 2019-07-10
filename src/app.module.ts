@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, Scope } from '@nestjs/common';
 import { APP_PIPE } from '@nestjs/core';
 import { GraphQLModule } from '@nestjs/graphql';
 import { CheckPipe } from './common/pipes/check.pipe';
@@ -21,6 +21,7 @@ import { UserService } from './modules/user/user.service';
     // of inputs for the resolvers in relation to the current user
     {
       provide: APP_PIPE,
+      scope: Scope.REQUEST,
       useClass: CheckPipe,
     },
   ],
